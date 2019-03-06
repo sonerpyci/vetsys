@@ -1,7 +1,7 @@
 package com.sonerpyci.springdemo.vetsys.services;
 
 
-import com.sonerpyci.springdemo.vetsys.dao.VetsysRepository;
+import com.sonerpyci.springdemo.vetsys.dao.CustomerRepository;
 import com.sonerpyci.springdemo.vetsys.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +14,18 @@ import java.util.List;
 public class VetsysService {
 
     @Autowired
-    private VetsysRepository vetsysRepository;
+    private CustomerRepository customerRepository;
 
     public Collection<Customer> findAllCustomers(){
         List<Customer> customers = new ArrayList<>();
-        for (Customer customer : vetsysRepository.findAll()) {
+        for (Customer customer : customerRepository.findAll()) {
             customers.add(customer);
         }
         return customers;
+    }
+
+    public void deleteCustomer(long id){
+        customerRepository.deleteById(id);
     }
 
 }

@@ -4,6 +4,7 @@ import com.sonerpyci.springdemo.vetsys.models.Customer;
 import com.sonerpyci.springdemo.vetsys.services.VetsysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -16,15 +17,19 @@ public class MainRestController {
     private VetsysService vetsysService;
 
 
-    @GetMapping(value = "/")
+    /*@GetMapping(value = "/")
     public String hello(){
         return "Hello World!";
-    }
+    }*/
 
     @GetMapping(value = "/findAllCustomers" )
     public Collection<Customer> getAllCustomers(){
         return vetsysService.findAllCustomers();
     }
 
+    @GetMapping(value = "/delete")
+    public void deleteCustomer(@RequestParam long id){
+        vetsysService.deleteCustomer(id);
+    }
 
 }
