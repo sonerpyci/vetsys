@@ -23,7 +23,7 @@ public class Customer {
     @Column(name = "district") //Belirtmesem de olur ama bulunsun zararı yok.
     private String district;
 
-    private String addres;
+    private String address;
 
     private String phone;
 
@@ -66,12 +66,12 @@ public class Customer {
         this.district = district;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {

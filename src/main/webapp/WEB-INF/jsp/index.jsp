@@ -48,13 +48,50 @@
                             <td>${customer.firstName}</td>
                             <td>${customer.lastName}</td>
                             <td>${customer.district}</td>
-                            <td>${customer.addres}</td>
+                            <td>${customer.address}</td>
                             <td>${customer.phone}</td>
                             <td>${customer.email}</td>
+                            <td>
+                                <a href="updateCustomer?id=${customer.id}"><div class="glyphicon glyphicon-pencil"></div></a>
+                                <span style="padding-left: 20px;"></span>
+                                <a href="deleteCustomer?id=${customer.id}"><div class="glyphicon glyphicon-trash"></div></a>
+                            </td>
                         </tr>
                     </c:forEach>
+                    <tr>
+                        <a href="createCustomer"><div class="glyphicon glyphicon-plus"></div>Add</a>
+                    </tr>
                 </tbody>
             </table>
+        </c:when>
+        <c:when test="${mode == 'CUSTOMER_EDIT' || mode == 'CUSTOMER_CREATE'}">
+            <form class="form-horizontal" action="saveCustomer?id=${customer.id}" method="POST">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" value="${customer.firstName}" name="firstName" id="firstName" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" value="${customer.lastName}" name="lastName" id="lastName" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <input type="text" class="form-control" value="${customer.district}" name="district" id="district" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" value="${customer.address}" name="address" id="address">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" value="${customer.phone}" name="phone" id="phone" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" value="${customer.email}" name="email" id="email" required="true">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </c:when>
     </c:choose>
 
