@@ -18,7 +18,7 @@
             <a class="navbar-brand" href="/">VET-SYS</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/">Customer</a></li>
+            <li><a href="/customer">Customer</a></li>
             <li class="active"><a href="/pet">Pet</a></li>
         </ul>
     </div>
