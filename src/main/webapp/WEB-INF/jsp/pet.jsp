@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -24,7 +23,6 @@
         </ul>
     </div>
 </nav>
-
 <div class="col-md-3">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -43,9 +41,7 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-9 container">
-
     <c:choose>
         <c:when test="${mode == 'PET_VIEW' || mode == 'CUSTOMER_PET_VIEW'}">
             <div class="table-responsive">
@@ -130,8 +126,6 @@
             </form>
         </c:when>
     </c:choose>
-
-
 </div>
 <script src="petSearch.js"></script>
 </body>
