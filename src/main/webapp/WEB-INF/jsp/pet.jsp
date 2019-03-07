@@ -5,6 +5,8 @@
     <title>Vet-Sys</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="app.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,7 +17,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">VET-SYS</a>
+            <a class="navbar-brand" href="#">VET-SYS</a>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/customer">Customer</a></li>
@@ -122,6 +124,7 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+                <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </c:when>

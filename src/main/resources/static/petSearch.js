@@ -9,10 +9,15 @@ $( document ).ready(function() {
         });
         $("#search").keyup(function (e) {
             var search_text = $("#search").val();
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
             if (e.which !== '13' && search_text.length >= 3) {
                 $.ajax({
                     type: "POST",
                     url: "/searchPet",
+                    beforeSend: function(request) {
+                        request.setRequestHeader(header, token);
+                    },
                     data: {
                         'searchQuery': $("#search").val()
                     },

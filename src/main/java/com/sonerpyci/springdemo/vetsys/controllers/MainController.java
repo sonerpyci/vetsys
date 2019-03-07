@@ -24,11 +24,11 @@ public class MainController {
     private PetService petService;
 
 
-    @GetMapping(value = "/")
+    /*@GetMapping(value = "/")
     public String initIndexPage(HttpServletRequest req){
 
         return "index"; //application.properties'de suffix keywordlu ayarı silersem burada .jsp uzantısını eklemem gerekir. (index.jsp)
-    }
+    }*/
 
 
 
