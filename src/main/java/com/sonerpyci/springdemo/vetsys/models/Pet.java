@@ -30,7 +30,7 @@ public class Pet {
     private String age;
 
     @Column(name = "owner")
-    private long ownerId;
+    private long owner;
 
     public long getId() {
         return id;
@@ -88,11 +88,11 @@ public class Pet {
         this.age = age;
     }
 
-    public long getOwnerId() {
-        return ownerId;
+    public long getOwner() {
+        return owner;
     }
 
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner(long owner) {
+        this.owner = owner;
     }
 }

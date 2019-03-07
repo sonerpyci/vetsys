@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name="customer")
 public class Customer {
@@ -29,6 +30,20 @@ public class Customer {
 
     private String email;
 
+    @Transient
+    private List pets;
+
+    public List getPets() {
+        return pets;
+    }
+
+    public void setPets(List pets) {
+        this.pets = pets;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)

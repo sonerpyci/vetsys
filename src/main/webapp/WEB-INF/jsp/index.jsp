@@ -18,8 +18,8 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Customer</a></li>
-            <li><a href="#">Pet</a></li>
-            <li><a href="#">Search</a></li>
+            <li><a href="/pet">Pet</a></li>
+            <li><a href="/search">Search</a></li>
         </ul>
     </div>
 </nav>
@@ -28,41 +28,45 @@
 
     <c:choose>
         <c:when test="${mode == 'CUSTOMER_VIEW'}">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>District</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="customer" items="${customers}">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>${customer.id}</td>
-                            <td>${customer.firstName}</td>
-                            <td>${customer.lastName}</td>
-                            <td>${customer.district}</td>
-                            <td>${customer.address}</td>
-                            <td>${customer.phone}</td>
-                            <td>${customer.email}</td>
-                            <td>
-                                <a href="updateCustomer?id=${customer.id}"><div class="glyphicon glyphicon-pencil"></div></a>
-                                <span style="padding-left: 20px;"></span>
-                                <a href="deleteCustomer?id=${customer.id}"><div class="glyphicon glyphicon-trash"></div></a>
-                            </td>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>District</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Operations</th>
                         </tr>
-                    </c:forEach>
-                    <tr>
-                        <a href="createCustomer"><div class="glyphicon glyphicon-plus"></div>Add</a>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="customer" items="${customers}">
+                            <tr>
+                                <td>${customer.id}</td>
+                                <td>${customer.firstName}</td>
+                                <td>${customer.lastName}</td>
+                                <td>${customer.district}</td>
+                                <td>${customer.address}</td>
+                                <td>${customer.phone}</td>
+                                <td>${customer.email}</td>
+                                <td>
+                                    <a href="updateCustomer?id=${customer.id}"><div class="glyphicon glyphicon-pencil"></div></a>
+                                    <span style="padding-left: 20px;"></span>
+                                    <a href="deleteCustomer?id=${customer.id}"><div class="glyphicon glyphicon-trash"></div></a>
+                                    <span style="padding-left: 20px;"></span>
+                                    <a href="createPet?id=${customer.id}"><div class="glyphicon glyphicon-plus"></div></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <a href="createCustomer"><div class="glyphicon glyphicon-plus"></div>Add Customer</a>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </c:when>
         <c:when test="${mode == 'CUSTOMER_EDIT' || mode == 'CUSTOMER_CREATE'}">
             <form class="form-horizontal" action="saveCustomer?id=${customer.id}" method="POST">

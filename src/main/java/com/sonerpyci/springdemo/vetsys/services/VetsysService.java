@@ -2,10 +2,14 @@ package com.sonerpyci.springdemo.vetsys.services;
 
 
 import com.sonerpyci.springdemo.vetsys.dao.CustomerRepository;
+import com.sonerpyci.springdemo.vetsys.dao.PetRepository;
 import com.sonerpyci.springdemo.vetsys.models.Customer;
+import com.sonerpyci.springdemo.vetsys.models.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,11 +21,18 @@ public class VetsysService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Collection<Customer> findAllCustomers(){
+    @Autowired
+    private PetRepository petRepository;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    public Collection<Customer> findAllCustomers() {
         List<Customer> customers = new ArrayList<>();
         for (Customer customer : customerRepository.findAll()) {
             customers.add(customer);
         }
+
         return customers;
     }
 
@@ -36,10 +47,44 @@ public class VetsysService {
 
 
     public void saveCustomer(Customer customer){
-        System.out.println("SONER INFO : " + customer.getAddress());
-        System.out.println("SONER INFO : " + customer.getDistrict());
-        System.out.println("SONER INFO : " + customer.getPhone());
         customerRepository.save(customer);
+    }
+
+
+    /* PET MODEL OPERATIONS */
+    public Collection<Pet> findAllPets(){
+        List<Pet> pets = new ArrayList<>();
+        for (Pet pet : petRepository.findAll()) {
+            pets.add(pet);
+        }
+        return pets;
+    }
+
+    public Pet findPetById(long id){
+        Optional<Pet> pet = petRepository.findById(id);
+        return pet.orElse(null);
+    }
+
+
+    public void deletePet(long id){
+        petRepository.deleteById(id);
+    }
+
+    public void savePet(Pet pet){
+        petRepository.save(pet);
+        System.out.println();
+    }
+
+    public List findPetsByOwnerId(long id) {
+        List pets = new ArrayList<>();
+        Query query = entityManager.createQuery("SELECT u FROM pet u WHERE u.owner=:owner");
+        query.setParameter("owner", id);
+        try {
+            pets = query.getResultList();
+        } catch (Exception e) {
+            // Handle exception
+        }
+        return pets;
     }
 
 }
