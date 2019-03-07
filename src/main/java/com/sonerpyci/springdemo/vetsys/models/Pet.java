@@ -2,10 +2,6 @@ package com.sonerpyci.springdemo.vetsys.models;
 
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity(name="pet")
 public class Pet {

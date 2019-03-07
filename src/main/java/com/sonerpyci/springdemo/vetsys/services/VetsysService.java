@@ -51,6 +51,18 @@ public class VetsysService {
     }
 
 
+    public List findCustomersBySearch(String searchQuery) {
+        List customerSearchResult = new ArrayList<>();
+        Query query = entityManager.createQuery("SELECT u FROM customer u WHERE CONCAT(u.firstName, ' ', u.lastName) LIKE:searchQuery");
+        query.setParameter("searchQuery", '%'+searchQuery+'%');
+        try {
+            customerSearchResult = query.getResultList();
+        } catch (Exception e) {
+            // Handle exception
+        }
+        return customerSearchResult;
+    }
+
     /* PET MODEL OPERATIONS */
     public Collection<Pet> findAllPets(){
         List<Pet> pets = new ArrayList<>();
@@ -75,7 +87,7 @@ public class VetsysService {
         System.out.println();
     }
 
-    public List findPetsByOwnerId(long id) {
+    public List findPetsByOwnerId(Long id) {
         List pets = new ArrayList<>();
         Query query = entityManager.createQuery("SELECT u FROM pet u WHERE u.owner=:owner");
         query.setParameter("owner", id);
@@ -85,6 +97,18 @@ public class VetsysService {
             // Handle exception
         }
         return pets;
+    }
+
+    public List findPetsBySearch(String searchQuery) {
+        List petSearchResult = new ArrayList<>();
+        Query query = entityManager.createQuery("SELECT u FROM pet u WHERE u.name LIKE:searchQuery");
+        query.setParameter("searchQuery", '%'+searchQuery+'%');
+        try {
+            petSearchResult = query.getResultList();
+        } catch (Exception e) {
+            // Handle exception
+        }
+        return petSearchResult;
     }
 
 }

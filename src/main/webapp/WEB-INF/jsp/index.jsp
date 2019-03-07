@@ -6,64 +6,84 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">VET-SYS</a>
+            <a class="navbar-brand active" href="/">VET-SYS</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Customer</a></li>
+            <li><a href="/customer">Customer</a></li>
             <li><a href="/pet">Pet</a></li>
-            <li><a href="/search">Search</a></li>
         </ul>
     </div>
 </nav>
+<div class="col-md-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="input-group col-md-12">
+            <span class="input-group-btn">
+                <button class="btn searchButton" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+                <input type="text" id="search" class="search-query form-control" placeholder="Search" />
+            </div>
+        </div>
+        <div class="panel-body">
+            <ul id="customerResult" class="list-group">
+            </ul>
+        </div>
+    </div>
+</div>
 
-<div class="container">
-
+<div class="col-md-9 container">
     <c:choose>
         <c:when test="${mode == 'CUSTOMER_VIEW'}">
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>District</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Operations</th>
-                        </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>District</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Operations</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="customer" items="${customers}">
-                            <tr>
-                                <td>${customer.id}</td>
-                                <td>${customer.firstName}</td>
-                                <td>${customer.lastName}</td>
-                                <td>${customer.district}</td>
-                                <td>${customer.address}</td>
-                                <td>${customer.phone}</td>
-                                <td>${customer.email}</td>
-                                <td>
-                                    <a href="updateCustomer?id=${customer.id}"><div class="glyphicon glyphicon-pencil"></div></a>
-                                    <span style="padding-left: 20px;"></span>
-                                    <a href="deleteCustomer?id=${customer.id}"><div class="glyphicon glyphicon-trash"></div></a>
-                                    <span style="padding-left: 20px;"></span>
-                                    <a href="createPet?id=${customer.id}"><div class="glyphicon glyphicon-plus"></div></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
+                    <c:forEach var="customer" items="${customers}">
                         <tr>
-                            <a href="createCustomer"><div class="glyphicon glyphicon-plus"></div>Add Customer</a>
+                            <td>${customer.id}</td>
+                            <td>${customer.firstName}</td>
+                            <td>${customer.lastName}</td>
+                            <td>${customer.district}</td>
+                            <td>${customer.address}</td>
+                            <td>${customer.phone}</td>
+                            <td>${customer.email}</td>
+                            <td>
+                                <div class="pull-right action-buttons">
+                                    <a href="updateCustomer?id=${customer.id}" ><span class="glyphicon glyphicon-pencil"></span></a>
+
+                                    <a href="deleteCustomer?id=${customer.id}" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+
+                                    <a href="createPet?id=${customer.id}" class="plus"><span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                            </td>
                         </tr>
+                    </c:forEach>
+                    <tr>
+                        <a href="createCustomer"><div class="glyphicon glyphicon-plus"></div>Add Customer</a>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -98,9 +118,7 @@
             </form>
         </c:when>
     </c:choose>
-
-
 </div>
-
+<script src="customerSearch.js"></script>
 </body>
 </html>
