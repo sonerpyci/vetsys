@@ -14,6 +14,6 @@
 <body>
 
 
-<script src="customerSearch.js"></script>
+INDEX LOGIN PAGE
 </body>
 </html>

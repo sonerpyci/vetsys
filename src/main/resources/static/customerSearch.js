@@ -5,11 +5,11 @@ $( document ).ready(function() {
     $(function () {
         $("#search").focus();
         $(document).keypress(function (e) {
-            if (e.which == '13') e.preventDefault();
+            if (e.which === '13') e.preventDefault();
         });
         $("#search").keyup(function (e) {
             var search_text = $("#search").val();
-            if (e.which != '13' && search_text.length >= 3) {
+            if (e.which !== '13' && search_text.length >= 3) {
                 $.ajax({
                     type: "POST",
                     url: "/searchCustomer",
