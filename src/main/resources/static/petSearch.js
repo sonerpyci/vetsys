@@ -20,7 +20,7 @@ $( document ).ready(function() {
                     dataType: 'json'
                 });
             } else {
-                $('#customerResult').empty();
+                $('#petResult').empty();
             }
         });
     });
@@ -29,10 +29,11 @@ $( document ).ready(function() {
         console.log(data);
         var listCustomers = $('#petResult');
         listCustomers.empty();
-        data.forEach(function (pet) {
-
+        data.forEach(function (result) {
+            pet = result[0]
+            customer = result[1]
             var petHtml = "<li class=\"list-group-item\">" +
-                pet.name + '-' + pet.petClass + '-'+ pet.kind +
+                pet.name + "\t---\t" + customer.firstName + ' '+ customer.lastName +
                 "<div class=\"pull-right action-buttons\">"+
                 "<a href=\"updatePet?id=" + pet.id + "\"><span class=\"glyphicon glyphicon-pencil\"></span></a>\n" +
                 "<a href=\"deletePet?id=" + pet.id  +"\" class=\"trash\"><span class=\"glyphicon glyphicon-trash\"></span></a>\n" +

@@ -2,7 +2,8 @@ package com.sonerpyci.springdemo.vetsys.controllers.rest;
 
 import com.google.gson.Gson;
 import com.sonerpyci.springdemo.vetsys.models.Customer;
-import com.sonerpyci.springdemo.vetsys.services.VetsysService;
+import com.sonerpyci.springdemo.vetsys.services.PetService;
+import com.sonerpyci.springdemo.vetsys.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +20,15 @@ import java.util.List;
 public class MainRestController {
 
     @Autowired
-    private VetsysService vetsysService;
+    private CustomerService customerService;
+    @Autowired
+    private PetService petService;
 
 
     @PostMapping(value = "/searchCustomer")
     public String searchCustomer(@RequestParam String searchQuery, HttpServletRequest req, HttpServletResponse resp){
 
-        List customers = vetsysService.findCustomersBySearch(req.getParameter("searchQuery"));
+        List customers = customerService.findCustomersBySearch(req.getParameter("searchQuery"));
         req.setAttribute("customerResult", customers);
         String customersJson = new Gson().toJson(customers);
         return customersJson;
@@ -34,19 +37,19 @@ public class MainRestController {
     @PostMapping(value = "/searchPet")
     public String searchPet(@RequestParam String searchQuery, HttpServletRequest req, HttpServletResponse resp){
 
-        List pets = vetsysService.findPetsBySearch(req.getParameter("searchQuery"));
+        List pets = petService.findPetsBySearch(req.getParameter("searchQuery"));
         req.setAttribute("customerResult", pets);
         String petsJson = new Gson().toJson(pets);
         return petsJson;
     }
     @GetMapping(value = "/findAllCustomers" )
     public Collection<Customer> getAllCustomers(){
-        return vetsysService.findAllCustomers();
+        return customerService.findAllCustomers();
     }
 
     @GetMapping(value = "/delete")
     public void deleteCustomer(@RequestParam long id){
-        vetsysService.deleteCustomer(id);
+        customerService.deleteCustomer(id);
     }
 
 }

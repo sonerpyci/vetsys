@@ -1,6 +1,5 @@
 package com.sonerpyci.springdemo.vetsys.services;
 
-
 import com.sonerpyci.springdemo.vetsys.dao.CustomerRepository;
 import com.sonerpyci.springdemo.vetsys.dao.PetRepository;
 import com.sonerpyci.springdemo.vetsys.models.Customer;
@@ -16,52 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VetsysService {
-
-    @Autowired
-    private CustomerRepository customerRepository;
+public class PetService {
 
     @Autowired
     private PetRepository petRepository;
 
     @Autowired
     private EntityManager entityManager;
-
-    public Collection<Customer> findAllCustomers() {
-        List<Customer> customers = new ArrayList<>();
-        for (Customer customer : customerRepository.findAll()) {
-            customers.add(customer);
-        }
-
-        return customers;
-    }
-
-    public void deleteCustomer(long id){
-        customerRepository.deleteById(id);
-    }
-
-    public Customer findCustomerById(long id){
-        Optional<Customer> customer = customerRepository.findById(id);
-        return customer.orElse(null);
-    }
-
-
-    public void saveCustomer(Customer customer){
-        customerRepository.save(customer);
-    }
-
-
-    public List findCustomersBySearch(String searchQuery) {
-        List customerSearchResult = new ArrayList<>();
-        Query query = entityManager.createQuery("SELECT u FROM customer u WHERE CONCAT(u.firstName, ' ', u.lastName) LIKE:searchQuery");
-        query.setParameter("searchQuery", '%'+searchQuery+'%');
-        try {
-            customerSearchResult = query.getResultList();
-        } catch (Exception e) {
-            // Handle exception
-        }
-        return customerSearchResult;
-    }
 
     /* PET MODEL OPERATIONS */
     public Collection<Pet> findAllPets(){
@@ -101,10 +61,11 @@ public class VetsysService {
 
     public List findPetsBySearch(String searchQuery) {
         List petSearchResult = new ArrayList<>();
-        Query query = entityManager.createQuery("SELECT u FROM pet u WHERE u.name LIKE:searchQuery");
+        Query query = entityManager.createQuery("SELECT p,c FROM pet As p JOIN customer AS c ON p.owner = c.id  WHERE p.name LIKE:searchQuery");
         query.setParameter("searchQuery", '%'+searchQuery+'%');
         try {
             petSearchResult = query.getResultList();
+            System.out.println();
         } catch (Exception e) {
             // Handle exception
         }
