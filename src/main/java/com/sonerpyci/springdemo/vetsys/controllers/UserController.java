@@ -56,6 +56,6 @@ public class UserController {
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
-        return "customer";
+        return "index";
     }
 }

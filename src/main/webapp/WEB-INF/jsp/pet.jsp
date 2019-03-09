@@ -14,17 +14,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">VET-SYS</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/customer">Customer</a></li>
-            <li class="active"><a href="/pet">Pet</a></li>
-        </ul>
-    </div>
-</nav>
+
+<%@include file='header.jsp'%>
+
 <div class="col-md-3">
     <div class="panel panel-primary">
         <div class="panel-heading">

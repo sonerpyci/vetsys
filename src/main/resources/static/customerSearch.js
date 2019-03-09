@@ -43,8 +43,9 @@ $( document ).ready(function() {
                 "<a href=\"deleteCustomer?id=" + customer.id  +"\" class=\"trash\"><span class=\"glyphicon glyphicon-trash\"></span></a>\n" +
                 "<a href=\"createPet?id=" + customer.id + "\" class=\"plus\"><span class=\"glyphicon glyphicon-plus\"></span></a>\n" +
                 "<a href=\"pet?customerId=" + customer.id + "\" class=\"plus\"><span class=\"glyphicon glyphicon-new-window\n\"></span></a>\n" +
-                "</li>" +
-                "</div>";
+                "</div>" +
+                "</li>";
+
             $(customerHtml).appendTo($(listCustomers));
 
         });

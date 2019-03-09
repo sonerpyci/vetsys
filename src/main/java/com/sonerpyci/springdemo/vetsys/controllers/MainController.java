@@ -23,19 +23,6 @@ public class MainController {
     @Autowired
     private PetService petService;
 
-
-    /*@GetMapping(value = "/")
-    public String initIndexPage(HttpServletRequest req){
-
-        return "index"; //application.properties'de suffix keywordlu ayarı silersem burada .jsp uzantısını eklemem gerekir. (index.jsp)
-    }*/
-
-
-
-
-
-
-
     @GetMapping(value = "/customer")
     public String init(HttpServletRequest req){
         req.setAttribute("customers", customerService.findAllCustomers());
