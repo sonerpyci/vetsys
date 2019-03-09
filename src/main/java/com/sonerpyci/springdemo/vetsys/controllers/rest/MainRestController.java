@@ -28,7 +28,6 @@ public class MainRestController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping(value = "/searchCustomer")
     public String searchCustomer(@RequestParam String searchQuery, HttpServletRequest req, HttpServletResponse resp){
 
